@@ -1,0 +1,28 @@
+{
+  "name": "vue-router-keep-component",
+  "version": "0.0.1",
+  "description": "vue-router-keep-component增强router-view功能",
+  "main": "dist/vue-router-keep-component.common.js",
+  "module": "dist/vue-router-keep-component.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avoids/vue-router-keep-component.git"
+  },
+  "scripts": {
+    "build": "rollup -c build/rollup.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue-router keep component"
+  ],
+  "author": "avoids",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-latest": "^6.24.1",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  }
+}
