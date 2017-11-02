@@ -1,4 +1,15 @@
 const indexPath = '/'
+
+function parse__a(str) {
+    let list
+    if (typeof str === 'string' && str) {
+        try {
+            list = JSON.parse(str)
+        }catch (e) {
+        }
+    }
+    return Array.isArray(list) ? list : []
+}
 export default {
     computed: {
         pageParams () {
@@ -38,18 +49,18 @@ export default {
                 location.query = location.query || {}
                 let query = {...$route.query}
                 if (Object.keys(query).length) {
-                    let _a = query._a && JSON.parse(query._a)
-                    delete query._a
-                    location.query._a = (_a || []).concat({
+                    let __a = parse__a(query.__a)
+                    delete query.__a
+                    location.query.__a = __a.concat({
                         p: $route.path,
                         q: query
                     })
                 } else {
-                    location.query._a = [{
+                    location.query.__a = [{
                         p: $route.path
                     }]
                 }
-                location.query._a = JSON.stringify(location.query._a)
+                location.query.__a = JSON.stringify(location.query.__a)
                 $router.replace(location, onComplete, onAbort)
             }
         },
@@ -58,12 +69,13 @@ export default {
             const {$router, $route} = this
             if ($router) {
                 let query = $route.query
-                let _a = query._a && JSON.parse(query._a)
-                if (_a && _a.length) {
-                    let param = _a.pop()
+                let __a = parse__a(query.__a)
+                let param = __a.pop()
+
+                if (param && param.p) {
                     $router.replace({
                         path: param.p,
-                        query: param.q
+                        query: param.q || {}
                     })
                 } else {
                     // 只能回退
